@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Box, Button, Card, CardContent, CardActions, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  TextField,
+  Typography,
+  Collapse
+} from "@mui/material";
 
 function NewPostForm() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -11,8 +20,7 @@ function NewPostForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Add logic to send data to backend
+    console.log({ title, body });
     setTitle("");
     setBody("");
     handleCloseForm();
@@ -32,7 +40,12 @@ function NewPostForm() {
           Create New Post
         </Button>
       ) : (
-        <Card sx={{ margin: "0 auto", padding: 2, borderRadius: 2 }}>
+        <Button variant="outlined" color="primary" onClick={handleCloseForm}>
+          Close Form
+        </Button>
+      )}
+      <Collapse in={isFormOpen} unmountOnExit>
+        <Card sx={{ margin: "0 auto", padding: 2, borderRadius: 2, marginTop: 2 }}>
           <CardContent>
             <Typography variant="h5" color="text.secondary" gutterBottom>
               Create New Post
@@ -109,7 +122,7 @@ function NewPostForm() {
             </form>
           </CardContent>
         </Card>
-      )}
+      </Collapse>
     </Box>
   );
 }

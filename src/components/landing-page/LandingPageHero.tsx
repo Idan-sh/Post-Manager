@@ -54,8 +54,8 @@ function LandingPageHero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: delayInterval * 3 }}
       >
-        <Typography variant="h6" sx={{ marginTop: "3rem" }} gutterBottom>
-          Your personal post website!
+        <Typography variant="h6" sx={{ marginTop: "3rem", marginBottom: "1rem" }} gutterBottom>
+          Your personal posts website!
         </Typography>
         <Button href="/posts" variant="contained" color="primary" size="large">
           Get Started

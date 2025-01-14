@@ -1,4 +1,4 @@
-import { Typography, CircularProgress, Container, Button, ButtonBase, Box } from "@mui/material";
+import { Typography, CircularProgress, Container, Button, Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { Post } from "../models/Post.model";
@@ -48,16 +48,27 @@ function PostDetailsPage({ postInput }: PostDetailsPageProps) {
       <Typography variant="h4" fontWeight={800} align="center" gutterBottom>
         Post Details
       </Typography>
-      <Typography variant="h5">{post?.title}</Typography>
-      <Typography variant="subtitle1" fontWeight="bold" gutterBottom marginBottom={2}>
-        Post by user with ID: {post?.userId}
-      </Typography>
-      <Typography variant="body1" gutterBottom marginBottom={6}>
-        {post?.body}
-      </Typography>
 
-      {/* Comments Section */}
-      <Comments />
+      {postLoading && (
+        <Box display="flex" flexDirection="column" alignItems="center" gap={2} marginBlock={10}>
+          <CircularProgress />
+          <Typography variant="h6">Post loading</Typography>
+        </Box>
+      )}
+      {!postLoading && (
+        <>
+          <Typography variant="h5">{post?.title}</Typography>
+          <Typography variant="subtitle1" fontWeight="bold" gutterBottom marginBottom={2}>
+            Post by user with ID: {post?.userId}
+          </Typography>
+          <Typography variant="body1" gutterBottom marginBottom={6}>
+            {post?.body}
+          </Typography>
+
+          {/* Comments Section */}
+          <Comments />
+        </>
+      )}
 
       {/* Go Back to Posts Button */}
       <Box display="flex" width="100%" justifyContent="center" marginTop="2rem">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, TextField, Typography, Pagination, Container } from "@mui/material";
+import { Box, TextField, Typography, Pagination, Container, CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../services/posts.service";
 import PostsList from "../components/posts-page/PostsList";
@@ -71,10 +71,12 @@ function PostsPage() {
             }}
           />
         </Box>
+
         {isLoading ? (
-          <Typography variant="h5" align="center">
-            Loading posts...
-          </Typography>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+            <CircularProgress />
+            <Typography variant="h5">Loading posts</Typography>
+          </Box>
         ) : isError ? (
           <Typography variant="h5" align="center">
             Error: {error?.message}

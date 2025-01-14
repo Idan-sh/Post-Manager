@@ -1,4 +1,12 @@
-import { Card, CircularProgress, List, ListItem, ListItemText, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CircularProgress,
+  List,
+  ListItem,
+  ListItemText,
+  Typography
+} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { fetchCommentsByPostId } from "../../services/comments.service";
@@ -28,8 +36,11 @@ function Comments() {
       <Typography variant="h4" color="text.secondary">
         Comments
       </Typography>
+
       {commentsLoading ? (
-        <CircularProgress />
+        <Box display="flex" justifyContent="center" margin="5rem">
+          <CircularProgress />
+        </Box>
       ) : commentsError ? (
         <Typography color="error">{commentsErrorObj.message}</Typography>
       ) : (

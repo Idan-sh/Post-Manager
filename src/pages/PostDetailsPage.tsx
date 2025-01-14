@@ -27,11 +27,42 @@ function PostDetailsPage() {
   });
 
   if (isNaN(postIdNumber)) {
-    return <Typography color="error">Invalid Post ID</Typography>;
+    return (
+      <Container
+        sx={{
+          padding: "3rem 0 7rem",
+          width: { xs: "90%", sm: "90%", md: "80%" },
+          justifyContent: "center"
+        }}
+      >
+        <Typography variant="h4" fontWeight={800} align="center" gutterBottom marginBottom={8}>
+          Post Details
+        </Typography>
+        <Typography variant="h6" color="error" align="center">
+          Error: Invalid Post ID
+        </Typography>
+      </Container>
+    );
   }
 
   if (postError) {
-    return <Typography color="error">Error: {postErrorObj.message}</Typography>;
+    return (
+      <Container
+        sx={{
+          padding: "3rem 0 7rem",
+          width: { xs: "90%", sm: "90%", md: "80%" },
+          justifyContent: "center"
+        }}
+      >
+        <Typography variant="h4" fontWeight={800} align="center" gutterBottom marginBottom={8}>
+          Post Details
+        </Typography>
+        <Typography variant="h6" color="error" align="center">
+          Error: {postErrorObj.message}
+        </Typography>
+        ;
+      </Container>
+    );
   }
 
   return (

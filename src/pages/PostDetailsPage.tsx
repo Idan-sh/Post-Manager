@@ -29,10 +29,6 @@ function PostDetailsPage({ postInput }: PostDetailsPageProps) {
     return <Typography color="error">Invalid Post ID</Typography>;
   }
 
-  if (postLoading) {
-    return <CircularProgress />;
-  }
-
   if (postError) {
     return <Typography color="error">Error: {postErrorObj.message}</Typography>;
   }

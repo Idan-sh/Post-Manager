@@ -1,45 +1,45 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, TextField, Typography, Pagination, Container } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPosts } from "../services/posts.service";
 import PostsList from "../components/posts-page/PostsList";
-
-// Mock data for movies/TV shows (replace this with an API later)
-const mockData = Array.from({ length: 50 }, (_, i) => ({
-  userId: i,
-  id: i + 1,
-  title: `Post ${i + 1}`,
-  body: `This is the body for post ${i + 1}.`
-}));
+import { Post } from "../models/Post.model";
 
 function PostsPage() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  // Pagination variables
-  const itemsPerPage = 10; // Items per page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const {
+    data: posts,
+    isLoading,
+    isError,
+    error
+  } = useQuery<Post[], Error>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts
+  });
 
-  // Filtered and paginated results
-  const filteredResults = mockData.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
-  );
-  const paginatedResults = filteredResults.slice(startIndex, endIndex);
-
-  // Handle search query change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    setCurrentPage(1); // Reset to first page on search
+  const handleSearchChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(ev.target.value);
+    setCurrentPage(1);
   };
 
-  // Handle page change
-  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+  const handlePageChange = (_ev: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
   };
+
+  const filteredResults =
+    posts?.filter((post) => post.title.toLowerCase().includes(query.toLowerCase())) || [];
+
+  const paginatedResults = filteredResults.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <Box sx={{ backgroundColor: "background.default", color: "text.primary", minHeight: "100vh" }}>
       <Container sx={{ padding: "2rem 0.6rem" }}>
-        {/* Search Bar */}
         <Box sx={{ marginBottom: "3rem", textAlign: "center" }}>
           <Typography
             variant="h4"
@@ -58,8 +58,6 @@ function PostsPage() {
             onChange={handleSearchChange}
             sx={{
               width: { xs: "90%", sm: "90%", md: "60%" },
-              color: "text.primary",
-              borderRadius: "6px",
               margin: "0 auto",
               backgroundColor: "background.paper",
               "& .MuiInputBase-input": {
@@ -72,28 +70,37 @@ function PostsPage() {
             }}
           />
         </Box>
+        {isLoading ? (
+          <Typography variant="h5" align="center">
+            Loading posts...
+          </Typography>
+        ) : isError ? (
+          <Typography variant="h5" align="center">
+            Error: {error?.message}
+          </Typography>
+        ) : (
+          <>
+            <Container
+              disableGutters
+              sx={{
+                width: { xs: "90%", sm: "90%", md: "80%" },
+                justifyContent: "center"
+              }}
+            >
+              <PostsList posts={paginatedResults} />
+            </Container>
 
-        {/* Results List */}
-        <Container
-          disableGutters
-          sx={{
-            width: { xs: "90%", sm: "90%", md: "80%" },
-            justifyContent: "center"
-          }}
-        >
-          <PostsList posts={paginatedResults} />
-        </Container>
-
-        {/* Pagination */}
-        {filteredResults.length > itemsPerPage && (
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
-            <Pagination
-              count={Math.ceil(filteredResults.length / itemsPerPage)}
-              page={currentPage}
-              onChange={handlePageChange}
-              color="primary"
-            />
-          </Box>
+            {filteredResults.length > itemsPerPage && (
+              <Box sx={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
+                <Pagination
+                  count={Math.ceil(filteredResults.length / itemsPerPage)}
+                  page={currentPage}
+                  onChange={handlePageChange}
+                  color="primary"
+                />
+              </Box>
+            )}
+          </>
         )}
       </Container>
     </Box>

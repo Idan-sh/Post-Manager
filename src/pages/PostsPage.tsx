@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../services/posts.service";
 import PostsList from "../components/posts-page/PostsList";
 import { Post } from "../models/Post.model";
+import NewPostForm from "../components/new-post-form/NewPostForm";
 
 function PostsPage() {
   const [query, setQuery] = useState("");
@@ -70,6 +71,7 @@ function PostsPage() {
               }
             }}
           />
+          <NewPostForm />
         </Box>
 
         {isLoading ? (

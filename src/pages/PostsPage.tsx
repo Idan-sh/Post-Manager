@@ -59,6 +59,7 @@ function PostsPage() {
             sx={{
               width: { xs: "90%", sm: "90%", md: "60%" },
               margin: "0 auto",
+              borderRadius: "12px",
               backgroundColor: "background.paper",
               "& .MuiInputBase-input": {
                 color: "text.secondary"

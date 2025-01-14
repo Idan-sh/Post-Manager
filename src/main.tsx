@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import { AppThemeProvider } from "./context/ThemeProvider";
 import PostsPage from "./pages/PostsPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import PostDetailsPage from "./pages/PostDetailsPage";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/*" element={<LandingPage />} />
             <Route path="/posts" element={<PostsPage />} />
+            <Route path="/post/:postId" element={<PostDetailsPage />} />
           </Routes>
         </BrowserRouter>
       </AppThemeProvider>

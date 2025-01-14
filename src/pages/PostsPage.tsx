@@ -61,10 +61,16 @@ function PostsPage() {
             value={query}
             onChange={handleSearchChange}
             sx={{
+              borderRadius: "12px",
               width: { xs: "90%", sm: "90%", md: "60%" },
               margin: "0 auto",
-              borderRadius: "12px",
               backgroundColor: "background.paper",
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "12px",
+                "& fieldset": {
+                  borderRadius: "12px"
+                }
+              },
               "& .MuiInputBase-input": {
                 color: "text.secondary"
               },

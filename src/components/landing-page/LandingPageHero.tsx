@@ -57,7 +57,7 @@ function LandingPageHero() {
         <Typography variant="h6" sx={{ marginTop: "3rem" }} gutterBottom>
           Your personal post website!
         </Typography>
-        <Button variant="contained" color="primary" size="large">
+        <Button href="/posts" variant="contained" color="primary" size="large">
           Get Started
         </Button>
       </motion.div>

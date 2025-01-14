@@ -28,7 +28,11 @@ function Comments() {
   });
 
   if (isNaN(postIdNumber)) {
-    return <Typography color="error">Invalid Post ID</Typography>;
+    return (
+      <Typography color="error" align="center">
+        Invalid Post ID
+      </Typography>
+    );
   }
 
   return (
@@ -42,38 +46,46 @@ function Comments() {
           <CircularProgress />
         </Box>
       ) : commentsError ? (
-        <Typography color="error">{commentsErrorObj.message}</Typography>
+        <Typography color="error" align="center">
+          {commentsErrorObj.message}
+        </Typography>
       ) : (
         <List>
-          {comments?.map((comment: Comment) => (
-            <ListItem key={comment.id}>
-              <ListItemText
-                primary={
-                  <Typography variant="h6" fontWeight={400} color="text.secondary">
-                    {comment.name}
-                  </Typography>
-                }
-                secondary={
-                  <>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{
-                        backgroundColor: "primary.main",
-                        padding: "0.1rem 0.6rem",
-                        borderRadius: "6px"
-                      }}
-                    >
-                      {comment.email}
+          {comments && comments.length > 0 ? (
+            comments?.map((comment: Comment) => (
+              <ListItem key={comment.id}>
+                <ListItemText
+                  primary={
+                    <Typography variant="h6" fontWeight={400} color="text.secondary">
+                      {comment.name}
                     </Typography>
-                    {" — "}
-                    {comment.body}
-                  </>
-                }
-              />
-            </ListItem>
-          ))}
+                  }
+                  secondary={
+                    <>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          backgroundColor: "primary.main",
+                          padding: "0.1rem 0.6rem",
+                          borderRadius: "6px"
+                        }}
+                      >
+                        {comment.email}
+                      </Typography>
+                      {" — "}
+                      {comment.body}
+                    </>
+                  }
+                />
+              </ListItem>
+            ))
+          ) : (
+            <Typography color="text.secondary" align="center" marginBlock={8}>
+              No comments yet...
+            </Typography>
+          )}
         </List>
       )}
     </Card>

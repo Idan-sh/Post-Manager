@@ -10,7 +10,7 @@ import {
   Collapse
 } from "@mui/material";
 import { createPost } from "../../services/posts.service";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Post } from "../../models/Post.model";
 
 function NewPostForm() {
@@ -18,18 +18,24 @@ function NewPostForm() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
+  const queryClient = useQueryClient();
+
   const handleOpenForm = () => setIsFormOpen(true);
   const handleCloseForm = () => setIsFormOpen(false);
 
-  const mutation = useMutation<Post, Error, Omit<Post, "id" | "userId">>({mutationFn: createPost,
-      onSuccess: (data) => {
-        console.log("Post created successfully:", data);
-        handleCloseForm();
-      },
-      onError: (error: any) => {
-        console.error("Error creating post:", error);
-      }
-    });
+  const mutation = useMutation<Post, Error, Omit<Post, "id" | "userId">>({
+    mutationFn: createPost,
+    onSuccess: (data) => {
+      console.log("Post created successfully:", data);
+      queryClient.setQueryData<Post[]>(["posts"], (oldPosts) =>
+        oldPosts ? [data, ...oldPosts] : [data]
+      );
+      handleCloseForm();
+    },
+    onError: (error: any) => {
+      console.error("Error creating post:", error);
+    }
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

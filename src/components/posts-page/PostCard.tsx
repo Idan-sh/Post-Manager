@@ -12,7 +12,7 @@ function PostCard({ post }: PostCardProps) {
   return (
     <Tooltip title="See full details" placement="bottom" arrow>
       <Card
-        onClick={() => navigate(`/post/${post.id}`)}
+        onClick={() => navigate(`/post/${post.id}`, { state: { post } })}
         sx={{
           width: "100%",
           boxShadow: 3,

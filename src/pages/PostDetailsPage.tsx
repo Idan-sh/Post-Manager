@@ -1,17 +1,16 @@
 import { Typography, CircularProgress, Container, Button, Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Post } from "../models/Post.model";
 import { fetchPostById } from "../services/posts.service";
 import Comments from "../components/comments/Comments";
 
-interface PostDetailsPageProps {
-  postInput?: Post;
-}
-
-function PostDetailsPage({ postInput }: PostDetailsPageProps) {
+function PostDetailsPage() {
   const { postId } = useParams();
   const postIdNumber = parseInt(postId || "", 10);
+
+  const location = useLocation();
+  const postInput = location.state?.post as Post;
 
   const {
     data: post,

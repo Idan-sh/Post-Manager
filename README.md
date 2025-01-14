@@ -41,10 +41,10 @@ The application is built with React, TypeScript, and Vite, utilizing Material-UI
 
 ## Technologies Used
 
-•	`React`: JavaScript library for building user interfaces.   
-•	`TypeScript`: Typed superset of JavaScript that enhances code quality and maintainability.   
+•	`React`: JavaScript library for building responsive user interfaces.   
+•	`TypeScript`: A typed superset of JavaScript that enhances code quality and maintainability.   
 •	`Vite`: Next-generation frontend tooling for rapid development.   
-•	`Material-UI (MUI)`: React component library for consistent and customizable design.   
+•	`Material-UI (MUI)`: React component library for consistent and customizable design, that allows for faster development.   
 •	`React Query`: Data-fetching library for managing server state in React applications.   
 •	`Axios`: Promise-based HTTP client for making API requests.   
 •	`React Router`: Library for routing and navigation in React applications.   
@@ -79,7 +79,7 @@ git clone https://github.com/Idan-sh/Post-Manager.git
 cd Post-Manager
 ```
 
-2.	Install Dependencies:
+2.	Install Dependencies:   
 Ensure you have Node.js installed, then run:
 ```
 npm install

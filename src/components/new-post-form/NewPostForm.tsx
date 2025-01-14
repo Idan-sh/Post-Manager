@@ -9,6 +9,9 @@ import {
   Typography,
   Collapse
 } from "@mui/material";
+import { createPost } from "../../services/posts.service";
+import { useMutation } from "@tanstack/react-query";
+import { Post } from "../../models/Post.model";
 
 function NewPostForm() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -18,9 +21,21 @@ function NewPostForm() {
   const handleOpenForm = () => setIsFormOpen(true);
   const handleCloseForm = () => setIsFormOpen(false);
 
+  const mutation = useMutation<Post, Error, Omit<Post, "id" | "userId">>({mutationFn: createPost,
+      onSuccess: (data) => {
+        console.log("Post created successfully:", data);
+        handleCloseForm();
+      },
+      onError: (error: any) => {
+        console.error("Error creating post:", error);
+      }
+    });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ title, body });
+
+    mutation.mutate({ title, body });
+
     setTitle("");
     setBody("");
     handleCloseForm();

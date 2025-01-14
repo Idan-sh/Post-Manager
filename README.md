@@ -5,6 +5,8 @@ Post Manager is a responsive web application that allows users to view and searc
    
 The application is built with React, TypeScript, and Vite, utilizing Material-UI (MUI) for styling, React Query for data fetching, and Axios for HTTP requests.
 
+<img width="1552" alt="Screenshot 2025-01-14 at 18 53 12" src="https://github.com/user-attachments/assets/d22cbffe-f174-4d92-ab20-59ada31b9c84" />
+
 <br>
 
 ## Features:
@@ -50,6 +52,23 @@ The application is built with React, TypeScript, and Vite, utilizing Material-UI
 
 <br>
 
+## Demo
+
+### View Posts and Search
+![ezgif-3-0b0b337fcf](https://github.com/user-attachments/assets/d8e4023e-3793-4375-b9dd-bb71a6b34ebb)
+
+<br>
+
+### Create New Post and View Post Details
+![ezgif-3-3b9f30b5d0](https://github.com/user-attachments/assets/19860fac-8e19-48d8-918d-4e5fc5046eaf)
+
+<br>
+
+### Dark and Light Modes
+![ezgif-3-b364836480](https://github.com/user-attachments/assets/03691f54-8fcd-40a3-aa4a-9e79757f2beb)
+
+<br>
+
 ## Getting Started
 
 Follow these steps to run the application locally:   
@@ -72,6 +91,7 @@ npm run dev
 ```
 
 The application will start, and you can access it at http://localhost:3000.
+> Note: In case the port '3000' is already taken by another process, the app will run on a different port, which will be specified in the terminal in which the app is run.
 
 <br>
 

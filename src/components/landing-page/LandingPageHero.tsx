@@ -1,7 +1,10 @@
 import { Typography, Button, Container, Box } from "@mui/material";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 function LandingPageHero() {
+  const navigate = useNavigate();
+
   const delayInterval = 0.4;
   const distance = 100;
 
@@ -57,7 +60,7 @@ function LandingPageHero() {
         <Typography variant="h6" sx={{ marginTop: "3rem", marginBottom: "1rem" }} gutterBottom>
           Your personal posts website!
         </Typography>
-        <Button href="/posts" variant="contained" color="primary" size="large">
+        <Button onClick={() => navigate("/posts")} variant="contained" color="primary" size="large">
           Get Started
         </Button>
       </motion.div>

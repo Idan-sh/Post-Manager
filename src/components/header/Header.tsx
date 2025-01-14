@@ -52,7 +52,9 @@ function Header() {
                 component="a"
                 color="info"
                 key={page}
-                href={page === "HOME" ? "/" : `/${page}`}
+                onClick={() => {
+                  page === "HOME" ? navigate("/") : navigate(`/${page}`);
+                }}
                 sx={{
                   mr: 6,
                   display: "inline",
@@ -60,6 +62,7 @@ function Header() {
                   fontWeight: 400,
                   textDecoration: "none",
                   textTransform: "uppercase",
+                  cursor: "pointer",
                   "&:hover ": {
                     color: "primary.main",
                     textDecoration: "underline"

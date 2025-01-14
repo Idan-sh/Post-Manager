@@ -56,7 +56,7 @@ export const darkTheme = createTheme({
                 },
                 ],
                 "*": {
-                    transition: "background-color 0.5s, transform 0.2s, width 0.5s ease, height 0.5s ease, padding 0.5s ease, top 0.5s ease, left 0.5s ease, bottom 0.5s ease, right 0.5s ease, font-size 0.2s ease;"                },
+                    transition: "background-color 0.5s, width 0.5s ease, height 0.5s ease, padding 0.5s ease, top 0.5s ease, left 0.5s ease, bottom 0.5s ease, right 0.5s ease, font-size 0.2s ease;"                },
             },
         },
     },

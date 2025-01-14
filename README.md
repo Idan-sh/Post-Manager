@@ -1,50 +1,82 @@
-# React + TypeScript + Vite
+# Post Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
+Post Manager is a responsive web application that allows users to view and search posts fetched from the JSONPlaceholder API, and to post new posts.   
+   
+The application is built with React, TypeScript, and Vite, utilizing Material-UI (MUI) for styling, React Query for data fetching, and Axios for HTTP requests.
 
-Currently, two official plugins are available:
+<br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features:
 
-## Expanding the ESLint configuration
+1. `Display Posts`
+   - Fetches a list of posts from the JSONPlaceholder API.
+   - Displays each post’s title and body in a card format.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. `View Post Details`
+   - Navigates to a detailed view when a post is clicked.
+   - Displays the post’s title, body, and associated comments that are fetched from the JSONPlaceholder API (in a list format).
 
-- Configure the top-level `parserOptions` property like this:
+3. `Search Functionality`
+   - Includes a search bar to filter posts by title on the client side.
+     
+4. `Create New Post`
+   - Provides a form to add a new post with fields for title and body.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+5. `Responsive App Design`
+   - The app is designed in a versatile way and allows for both mobile and desktop screens. The app features a collapse menu that shows up only on smaller screens to allow for easier navigation.
+
+6. `Client-Side Pagination`
+   - Implemented pagination to organize fetched data, displaying a limited number of posts per page.
+
+7. `Dark and Light Modes`
+   - Utilizes MUI’s theming capabilities to support both dark and light modes.
+
+8. `Animations and Transitions`
+   - Incorporates animations and transitions using MUI, CSS, and React Motion to enhance user experience.
+
+<br>
+
+## Technologies Used
+
+•	`React`: JavaScript library for building user interfaces.   
+•	`TypeScript`: Typed superset of JavaScript that enhances code quality and maintainability.   
+•	`Vite`: Next-generation frontend tooling for rapid development.   
+•	`Material-UI (MUI)`: React component library for consistent and customizable design.   
+•	`React Query`: Data-fetching library for managing server state in React applications.   
+•	`Axios`: Promise-based HTTP client for making API requests.   
+•	`React Router`: Library for routing and navigation in React applications.   
+•	`React Motion`: Library for creating realistic animations in React.   
+
+<br>
+
+## Getting Started
+
+Follow these steps to run the application locally:   
+
+1.	Clone the Repository:
+```
+git clone https://github.com/Idan-sh/Post-Manager.git
+cd Post-Manager
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2.	Install Dependencies:
+Ensure you have Node.js installed, then run:
 ```
+npm install
+```
+
+3.	Run the Application:
+```
+npm run dev
+```
+
+The application will start, and you can access it at http://localhost:3000.
+
+<br>
+
+### Additional Notes
+
+•	`Error Handling`: The application gracefully handles loading states and errors during data fetching.   
+•	`Code Quality`: Follows best practices with clean and readable code, utilizing React functional components and hooks.   
+•	`State Management`: Manages server state efficiently using React Query, providing features like caching and background updates.   

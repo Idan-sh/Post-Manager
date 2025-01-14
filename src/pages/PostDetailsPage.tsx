@@ -1,6 +1,6 @@
 import { Typography, CircularProgress, Container, Button, Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Post } from "../models/Post.model";
 import { fetchPostById } from "../services/posts.service";
 import Comments from "../components/comments/Comments";
@@ -11,6 +11,8 @@ function PostDetailsPage() {
 
   const location = useLocation();
   const postInput = location.state?.post as Post;
+
+  const navigate = useNavigate();
 
   const {
     data: post,
@@ -67,7 +69,7 @@ function PostDetailsPage() {
 
       {/* Go Back to Posts Button */}
       <Box display="flex" width="100%" justifyContent="center" marginTop="2rem">
-        <Button href="/posts" variant="contained">
+        <Button onClick={() => navigate("/posts")} variant="contained">
           Go Back
         </Button>
       </Box>

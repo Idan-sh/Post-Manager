@@ -18,7 +18,9 @@ function PostsPage() {
     error
   } = useQuery<Post[], Error>({
     queryKey: ["posts"],
-    queryFn: fetchPosts
+    queryFn: fetchPosts,
+    staleTime: 1000 * 60 * 5 // Only fetch every 5 minutes, so the newly added post won't be erased because of a refresh.
+    // We do this only because we are not saving the post in a persistent dataset.
   });
 
   const handleSearchChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +53,7 @@ function PostsPage() {
           >
             Your Posts Feed
           </Typography>
+
           <TextField
             variant="outlined"
             placeholder="Search posts..."

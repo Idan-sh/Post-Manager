@@ -24,8 +24,8 @@ function LandingPageHero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: delayInterval * 0 }}
         >
-          <Typography variant="h2" textAlign="end" gutterBottom>
-            Welcome
+          <Typography variant="h2" fontWeight={800} textAlign="end" gutterBottom>
+            WELCOME
           </Typography>
         </motion.div>
 
@@ -34,8 +34,8 @@ function LandingPageHero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: delayInterval * 1 }}
         >
-          <Typography variant="h2" textAlign="start" gutterBottom>
-            to Your
+          <Typography variant="h2" fontWeight={800} textAlign="start" gutterBottom>
+            TO YOUR
           </Typography>
         </motion.div>
 
@@ -44,8 +44,8 @@ function LandingPageHero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: delayInterval * 2 }}
         >
-          <Typography variant="h2" textAlign="center" gutterBottom>
-            posts
+          <Typography variant="h2" fontWeight={800} textAlign="center" gutterBottom>
+            POSTS
           </Typography>
         </motion.div>
       </Box>

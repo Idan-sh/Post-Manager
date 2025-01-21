@@ -36,6 +36,10 @@ The application is built with React, TypeScript, and Vite, utilizing Material-UI
 
 8. `Animations and Transitions`
    - Incorporates animations and transitions using MUI, CSS, and React Motion to enhance user experience.
+  
+9. `Scroll to First Post`
+   - Adds a convenient button that, when clicked, scrolls to the first post on the currently viewed page.
+   - Includes smooth scrolling animation for a seamless user experience.
 
 <br>
 

@@ -4,13 +4,14 @@ import PostCard from "./PostCard";
 
 interface PostsListProps {
   posts: Post[];
+  firstPostRef: React.RefObject<HTMLLIElement>;
 }
-function PostsList({ posts }: PostsListProps) {
+function PostsList({ posts, firstPostRef }: PostsListProps) {
   return (
     <List disablePadding sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       {posts.length > 0 ? (
-        posts.map((post) => (
-          <ListItem disablePadding key={post.id}>
+        posts.map((post, index) => (
+          <ListItem disablePadding key={post.id} ref={index === 0 ? firstPostRef : null}>
             <PostCard post={post} />
           </ListItem>
         ))

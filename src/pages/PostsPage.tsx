@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Box, TextField, Typography, Pagination, Container, CircularProgress } from "@mui/material";
+import React, { useRef, useState } from "react";
+import {
+  Box,
+  TextField,
+  Typography,
+  Pagination,
+  Container,
+  CircularProgress,
+  Button
+} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../services/posts.service";
 import PostsList from "../components/posts-page/PostsList";
@@ -10,6 +18,8 @@ function PostsPage() {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  const firstPostRef = useRef<HTMLLIElement | null>(null);
 
   const {
     data: posts,
@@ -39,6 +49,11 @@ function PostsPage() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const handleFoucsFirstPost = () => {
+    firstPostRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    firstPostRef.current?.focus();
+  };
 
   return (
     <Box sx={{ backgroundColor: "background.default", color: "text.primary", minHeight: "100vh" }}>
@@ -101,7 +116,7 @@ function PostsPage() {
                 justifyContent: "center"
               }}
             >
-              <PostsList posts={paginatedResults} />
+              <PostsList posts={paginatedResults} firstPostRef={firstPostRef} />
             </Container>
 
             {filteredResults.length > itemsPerPage && (
@@ -114,6 +129,24 @@ function PostsPage() {
                 />
               </Box>
             )}
+
+            <Container
+              disableGutters
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginBlock: "1rem"
+              }}
+            >
+              <Button
+                onClick={handleFoucsFirstPost}
+                variant="contained"
+                color="primary"
+                size="small"
+              >
+                Focus on first post
+              </Button>
+            </Container>
           </>
         )}
       </Container>
